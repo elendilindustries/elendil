@@ -1,0 +1,223 @@
+@import url("https://cdn.jsdelivr.net/npm/lucide-static@0.263.0/font/lucide.min.css");
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Manrope", sans-serif;
+  background-color: #0a0a2a;
+  color: #ffffff;
+}
+
+#simulation {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background-image: linear-gradient(to right, #0f0f3a 1px, transparent 1px),
+    linear-gradient(to bottom, #0f0f3a 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.device {
+  width: 60px;
+  height: 60px;
+  border-radius: 30%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
+  font-size: 12px;
+  text-align: center;
+  user-select: none;
+  cursor: grab;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+.device:active {
+  cursor: grabbing;
+}
+
+.device.touchnode {
+  color: #4caf50;
+}
+.device.touchnode.on {
+  color: #ffa500;
+}
+.device.dimmer {
+  color: #2196f3;
+}
+
+.device.unclaimed {
+  color: #ff5722;
+  border: 2px dashed #9c27b0;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.router {
+  width: 80px;
+  height: 80px;
+  background-color: rgba(63, 81, 181, 0.5);
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  cursor: grab;
+  border-radius: 20%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.router:active {
+  cursor: grabbing;
+}
+
+.packet,
+.packet-trail {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: #e91e63;
+  box-shadow: 0 0 10px 2px #e91e63, 0 0 20px 5px rgba(233, 30, 99, 0.5);
+}
+
+.packet.redundancy,
+.packet-trail.redundancy {
+  background-color: #00bcd4;
+  box-shadow: 0 0 10px 2px #00bcd4, 0 0 20px 5px rgba(0, 188, 212, 0.5);
+}
+
+.packet-trail {
+  opacity: 0.7;
+  transition: opacity 1s;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 0.7;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.packet-trail {
+  animation: fadeOut 1s forwards;
+}
+
+.controls {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+.slider {
+  width: 100px;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: top left;
+}
+
+#networkLoad {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 100px;
+  height: 20px;
+  background-color: rgba(224, 224, 224, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+#networkLoadBar {
+  height: 100%;
+  width: 0%;
+  background-color: #2196f3;
+  transition: width 0.3s;
+}
+
+#nodeCount,
+#packetLossPercentage {
+  width: 50px;
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+#telemetry {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+#console {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #00ff00;
+  font-family: monospace;
+  padding: 10px;
+  overflow: auto;
+  transition: width 0.3s;
+  box-sizing: border-box;
+}
+
+#consoleToggle {
+  position: absolute;
+  top: 10px;
+  right: 310px;
+  background-color: rgba(51, 51, 51, 0.7);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+}
+
+.device i {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
